@@ -1,14 +1,14 @@
 //Last change 18 december 2013
 include <write.scad>
 
-supportWidth = 30;
+supportWidth = 45;
 supportHeight = 30;
 supportThickness = 2;
 coverThickness = 3;
-penDia = 8/2;
+penDia = 8.2/2;
 penAttach=15;
 
-$fn=150;
+$fn=100;
 
 
 /* *************************************************
@@ -64,7 +64,7 @@ module front() {
    difference()
    {
      rectangleArrondi(supportWidth,supportHeight,supportThickness);
-     rotate(45, [0, 0, 1]) translate([-20,5,0]) 
+     rotate(30, [0, 0, 1]) translate([-20,8,0]) 
      cube([150,supportHeight,supportThickness*4]);
    }
 }
@@ -74,7 +74,8 @@ module back(){
    difference()
    {
      rectangleArrondi(supportWidth,supportHeight,supportThickness);
-     rotate(45, [0, 0, 1]) translate([-20,5,0]) 
+     //rotate(45, [0, 0, 1]) translate([-20,5,0]) 
+     rotate(30, [0, 0, 1]) translate([-20,8,0])
      cube([150,supportHeight,supportThickness*4]);
    };
 
@@ -91,11 +92,18 @@ module attach_2() {
 }
 
 module pen_support_1() {
-	translate([3,-(penDia),(penDia/2)+coverThickness])
+	translate([6,-(penDia),(penDia/2)+coverThickness])
 	rotate(90,[0,90,0])
+
 	difference() {
-		cylinder(h = penAttach, r=penDia+supportThickness);
-		cylinder(h = penAttach, r=penDia);
+		difference() {
+			cylinder(h = penAttach, r=penDia+supportThickness);
+			cylinder(h = penAttach, r=penDia);
+		}
+
+		translate([-7,-36,-5])
+		rotate(45,[0,0,1])
+		cube ([penAttach*2,20,30]);
 	}
 }
 
@@ -105,7 +113,7 @@ module text() {
 	translate([7,5,-1])
 	rotate(-90,[0,0,1])
 	rotate(180,[0,0,1])
-	write("Nekloth",h=5,t=2,font="knewave.dxf",space=0.8);
+	write("ARNAUD",h=5,t=2,font="knewave.dxf",space=0.8);
 }
 
 /* ****** LA TOTALE ************************* */
