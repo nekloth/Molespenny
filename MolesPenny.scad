@@ -1,14 +1,14 @@
 //Last change 18 december 2013
 include <write.scad>
 
-supportWidth = 60;
-supportHeight = 50;
+supportWidth = 30;
+supportHeight = 30;
 supportThickness = 2;
-coverThickness = 2;
-penDia = 8.3;
-penAttach=20;
+coverThickness = 3;
+penDia = 8/2;
+penAttach=15;
 
-$fn=100;
+$fn=150;
 
 
 /* *************************************************
@@ -16,6 +16,7 @@ $fn=100;
  * *********************************************** */
 module grip1() {
 	translate([2*supportWidth/3,supportHeight/4,((2*supportThickness)+coverThickness)])
+	translate([0,10,0])
 	rotate (90,[1,0,0])
 	difference() {
 		cylinder(r=3,h=2);
@@ -63,7 +64,7 @@ module front() {
    difference()
    {
      rectangleArrondi(supportWidth,supportHeight,supportThickness);
-     rotate(45, [0, 0, 1]) translate([-20,10,0]) 
+     rotate(45, [0, 0, 1]) translate([-20,5,0]) 
      cube([150,supportHeight,supportThickness*4]);
    }
 }
@@ -73,7 +74,7 @@ module back(){
    difference()
    {
      rectangleArrondi(supportWidth,supportHeight,supportThickness);
-     rotate(45, [0, 0, 1]) translate([-20,10,0]) 
+     rotate(45, [0, 0, 1]) translate([-20,5,0]) 
      cube([150,supportHeight,supportThickness*4]);
    };
 
@@ -81,16 +82,16 @@ module back(){
 
 module attach_1() {
    translate([7,0,supportThickness/2])
-   cube([supportWidth-20,supportThickness,supportThickness+coverThickness]);
+   cube([supportWidth-15,supportThickness,supportThickness+coverThickness]);
 }
 
 module attach_2() {
-   translate([supportWidth-supportThickness,13,supportThickness/2])
-   cube([supportThickness,supportHeight-20,supportThickness+coverThickness]);
+   translate([supportWidth-supportThickness,5,supportThickness/2])
+   cube([supportThickness,supportHeight-10,supportThickness+coverThickness]);
 }
 
 module pen_support_1() {
-	translate([10,-(penDia),(supportThickness*3)+coverThickness])
+	translate([3,-(penDia),(penDia/2)+coverThickness])
 	rotate(90,[0,90,0])
 	difference() {
 		cylinder(h = penAttach, r=penDia+supportThickness);
@@ -99,22 +100,27 @@ module pen_support_1() {
 }
 
 module text() {
-	translate([40,48,supportThickness+supportThickness+coverThickness-1.5])
-	rotate(45,[0,0,1])
+	rotate(180,[0,1,0])
+	rotate(90,[0,0,1])
+	translate([7,5,-1])
+	rotate(-90,[0,0,1])
 	rotate(180,[0,0,1])
-	write("Nekloth",h=10,t=2,font="BlackRose.dxf",space=0.8);
+	write("Nekloth",h=5,t=2,font="knewave.dxf",space=0.8);
 }
 
 /* ****** LA TOTALE ************************* */
+translate([0,0,supportWidth])
+rotate(-90,[0,1,0])
 rotate(180,[0,0,1])
 {
 	front();
+	text();
 	back();
 	attach_1();
 	attach_2();
 	pen_support_1();
 	grip1();
 	grip2();
-	grip3();
-	text();
+	//grip3();
+
 }
