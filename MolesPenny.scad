@@ -34,9 +34,8 @@ module grip2() {
 }
 
 module grip3() {
-	translate([2*supportWidth/3,supportHeight+20,((2*supportThickness)+coverThickness)]) 
+	translate([-11,supportHeight-2,((2*supportThickness)+coverThickness)]) 
 	rotate (180,[1,0,00]) 
-	rotate(90,[0,0,1]) 
 		grip1();
 }
 
@@ -110,11 +109,17 @@ module pen_support_1() {
 module text() {
 	rotate(180,[0,1,0])
 	rotate(90,[0,0,1])
-	translate([7,5,-1])
+	translate([8,5,-1])
 	rotate(-90,[0,0,1])
 	rotate(180,[0,0,1])
-	write("ARNAUD",h=5,t=2,font="knewave.dxf",space=0.8);
+	write("Arnaud",h=5,t=2,font="Orbitron.dxf",space=1.2);
 }
+
+module insertionWay() {
+	translate([33,12,5.5])
+	write(">",h=5,t=2,font="orbitron.dxf");
+}
+
 
 /* ****** LA TOTALE ************************* */
 translate([0,0,supportWidth])
@@ -129,6 +134,7 @@ rotate(180,[0,0,1])
 	pen_support_1();
 	grip1();
 	grip2();
-	//grip3();
+	grip3();
+	insertionWay();
 
 }
