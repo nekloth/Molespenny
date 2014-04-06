@@ -1,5 +1,8 @@
-//Last change 18 december 2013
-include <Write.scad>
+//-- Version 3.5
+//-- Changement du 06APR2014
+//-- Anneau d'insertion agrandi
+
+include <./Write.scad>
 
 supportWidth = 45;
 supportHeight = 30;
@@ -100,7 +103,7 @@ module pen_support_1() {
 			cylinder(h = penAttach, r=penDia);
 		}
 
-		translate([-7,-36,-5])
+		translate([-7,-34,-5])
 		rotate(45,[0,0,1])
 		cube ([penAttach*2,20,30]);
 	}
@@ -112,7 +115,7 @@ module text() {
 	translate([8,5,-1])
 	rotate(-90,[0,0,1])
 	rotate(180,[0,0,1])
-	write("Arnaud",h=5,t=2,font="Orbitron.dxf",space=1.2);
+	write("Arnaud",h=5,t=2,font="orbitron.dxf",space=1.2);
 }
 
 module insertionWay() {
