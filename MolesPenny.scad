@@ -1,6 +1,11 @@
+//-- Version 3.5.1 
+//-- Pour les prénoms
+//-- 17APR2014
+
 //-- Version 3.5
 //-- Changement du 06APR2014
 //-- Anneau d'insertion agrandi
+
 
 include <./Write.scad>
 
@@ -17,6 +22,16 @@ $fn=100;
 /* *************************************************
  * Mes fonctions à moi
  * *********************************************** */
+module text() {
+	rotate(180,[0,1,0])
+	rotate(90,[0,0,1])
+	translate([8,5,-1])
+	rotate(-90,[0,0,1])
+	rotate(180,[0,0,1])
+	write("Laura",h=5,t=2,font="orbitron.dxf",space=1.2);
+}
+
+
 module grip1() {
 	translate([2*supportWidth/3,supportHeight/4,((2*supportThickness)+coverThickness)])
 	translate([0,10,0])
@@ -109,14 +124,6 @@ module pen_support_1() {
 	}
 }
 
-module text() {
-	rotate(180,[0,1,0])
-	rotate(90,[0,0,1])
-	translate([8,5,-1])
-	rotate(-90,[0,0,1])
-	rotate(180,[0,0,1])
-	write("Arnaud",h=5,t=2,font="orbitron.dxf",space=1.2);
-}
 
 module insertionWay() {
 	translate([33,12,5.5])
